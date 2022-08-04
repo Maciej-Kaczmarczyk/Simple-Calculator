@@ -9,6 +9,8 @@ let calculator = {
     /* Declaring the variables buttons and input. */
     buttons: undefined,
     input: undefined,
+   
+  
 
    /* A function that is called when the page is loaded. */
     init: function () {
@@ -27,7 +29,6 @@ let calculator = {
    /* A switch statement that is checking the value of the button that was clicked. */
     buttonClick: function (e) {
         let divHtmlText = e.target.innerHTML;
-        console.log("Klik: " + divHtmlText);
 
         switch (divHtmlText) {
             case "=":
@@ -65,14 +66,17 @@ let calculator = {
 
    /* Adding the value of the button that was clicked to the input. */
     addToInput: function (str) {
-        this.input.innerHTML += str;
+        if(document.getElementById('calculation').textContent.length < 14){
+            this.input.innerHTML += str;
+        } 
     },
 
    /* Evaluating the input. */
     evaluate: function () {
         this.previous.innerHTML=calculator.input.innerHTML;
         let result = math.evaluate(calculator.input.innerHTML);
-        calculator.setInput(result);
+        if(result != undefined){
+        calculator.setInput(result)};
     },
 
    /* Calculating the root of the input. */
@@ -93,3 +97,4 @@ let calculator = {
         this.input.innerHTML = str;
     }
 };
+
